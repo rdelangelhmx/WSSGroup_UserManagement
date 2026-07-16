@@ -44,7 +44,7 @@ import { DateFormatService } from './core/providers/date-format.service';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErpHeaderInterceptor, multi: true },
-    { provide: UsDateFormatService, useClass: DateFormatService }
+    { provide: DateFormatService, useClass: UsDateFormatService }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { User } from '../../../../shared/models/User.model';
-import * as UserActions from '../../../../store/user.actions';
-import { selectAllUsers, selectLoading } from '../../../../store/user.selectors';
+import { User } from '../../../shared/models/User.model';
+import * as UserActions from '../../../store/user.actions';
+import { selectAllUsers, selectLoading } from '../../../store/user.selectors';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationDialogComponent, ConfirmationData } from '../confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent, ConfirmationData } from '../../../shared/components/confirmation-dialog.component';
 
 @Component({
   selector: 'app-user-list',

@@ -1,4 +1,4 @@
-import { Hair, Address, Bank, Company } from "../models/User.model";
+import { Hair, Address, Bank, Company, Crypto } from "../models/User.model";
 
 export interface UserDTO {
   id: number
