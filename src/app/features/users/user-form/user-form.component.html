@@ -1,0 +1,25 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>First Name</label>
+    <input formControlName="firstName" />
+  </div>
+  <div>
+    <label>Last Name</label>
+    <input formControlName="lastName" />
+  </div>
+  <div>
+    <label>Email</label>
+    <input formControlName="email" type="email" />
+  </div>
+  <div>
+    <label>Role</label>
+    <select formControlName="role">
+      <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+    </select>
+  </div>
+  <button type="submit" [disabled]="userForm.invalid || (loading$ | async)">
+    {{ isEdit ? 'Update' : 'Create' }}
+  </button>
+  <button type="button" (click)="cancel()">Cancel</button>
+</form>
+<div *ngIf="loading$ | async" class="loading">Saving...</div>
