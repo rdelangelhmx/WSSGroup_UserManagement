@@ -1,0 +1,52 @@
+<div *ngIf="loading$ | async" class="loading">Loading...</div>
+<div class="content p-5">
+    <div class="row mt-0">
+        <div class="col-md-12 p-0">
+            <h1 class="title-page mt-2">User Management</h1>
+        </div>
+        <hr>
+    </div>
+    <div class="row mt-2">
+        <div class="col-lg-6 col-12">
+            <button type="button" mat-raised-button class="btn-text mt-3 bg-primary text-white"
+                [routerLink]="['/users/new']">
+                <i class="fa fa-plus"></i> New User
+            </button>
+    </div>
+    <div class="row p-4">
+        <div class="col-md-12 container__table mat-elevation-z8">
+          <table *ngIf="!(loading$ | async)" class="table mb-0">
+            <thead>
+              <tr>
+                <th mat-header-cell class="table__header">ID</th>
+                <th mat-header-cell class="table__header">Name</th>
+                <th mat-header-cell class="table__header">Email</th>
+                <th mat-header-cell class="table__header">Age</th>
+                <th mat-header-cell class="table__header">Role</th>
+                <th mat-header-cell class="table__header">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users$ | async">
+                <td mat-cell class="table__cell">{{ user.id }}</td>
+                <td mat-cell class="table__cell">{{ user.firstName }} {{ user.lastName }}</td>
+                <td mat-cell class="table__cell">{{ user.email }}</td>
+                <td mat-cell class="table__cell">{{ user.age }}</td>
+                <td mat-cell class="table__cell">{{ user.role }}</td>
+                <td mat-cell class="table__cell">
+                  <button type="button" [routerLink]="['/users/edit', user.id]" mat-button matTooltip="Edit user" title="Edit user">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button type="button" (click)="deleteUser(user.id, user.firstName)" mat-button matTooltip="Delete user" title="Delete user">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="(users$ | async)?.length === 0 && !(loading$ | async)" class="no-data">
+            No users found.
+          </div>
+        </div>
+    </div>
+</div>
