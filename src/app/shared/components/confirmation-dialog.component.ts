@@ -11,11 +11,13 @@ export interface ConfirmationData {
 @Component({
   selector: 'app-confirmation-dialog',
   template: `
-    <h2 mat-dialog-title>{{ data.title }}</h2>
-    <div class="dialog-content">{{ data.message }}</div>
-    <div class="dialog-actions" style="display:flex; justify-content:flex-end; gap: 8px;">
-      <button mat-button mat-dialog-close>{{ data.cancelText || 'Cancel' }}</button>
-      <button mat-button color="warn" (click)="dialogRef.close(true)">{{ data.confirmText || 'Confirm' }}</button>
+    <div class="content p-3">
+      <h2 mat-dialog-title class="text-center">{{ data.title }}</h2>
+      <div class="dialog-content">{{ data.message }}</div>
+      <div class="dialog-actions mt-2" style="display:flex; justify-content:flex-end; gap: 8px;">
+        <button mat-raised-button mat-dialog-close>{{ data.cancelText || 'Cancel' }}</button>
+        <button mat-raised-button color="warn" (click)="dialogRef.close(true)">{{ data.confirmText || 'Confirm' }}</button>
+      </div>
     </div>
   `
 })

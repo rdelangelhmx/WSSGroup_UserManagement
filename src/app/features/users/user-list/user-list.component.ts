@@ -41,7 +41,7 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  editUser(id: number) {
-    // Navigate to edit
-  }
+  // editUser(id: number) {
+  //    this.store.dispatch(UserActions.loadUserById({ id }));
+  // }
 }

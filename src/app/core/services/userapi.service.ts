@@ -22,7 +22,7 @@ export class UserApiService {
   }
 
   update(id: number, user: Partial<UserDTO>): Observable<UserDTO> {
-    return this.http.patch<UserDTO>(`${this.baseUrl}/${id}`, user);
+    return this.http.put<UserDTO>(`${this.baseUrl}/${id}`, user);
   }
 
   delete(id: number): Observable<any> {

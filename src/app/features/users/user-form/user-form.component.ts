@@ -30,6 +30,7 @@ export class UserFormComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      age: ['', [Validators.required, Validators.min(20)]],
       role: ['', Validators.required]
     });
   }
@@ -58,9 +59,6 @@ export class UserFormComponent implements OnInit {
     } else {
       this.store.dispatch(UserActions.createUser({ user }));
     }
-    // After success, navigate back (we can listen to success actions but for simplicity we navigate after a delay or via effect)
-    // Better: use a Effect that navigates on success, or subscribe to store.
-    // We'll implement an effect for navigation in a moment.
     this.router.navigate(['/users']);
   }
 

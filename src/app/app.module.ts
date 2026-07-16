@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { UserListComponent } from './features/users/user-list/user-list.component';
 import { UserFormComponent } from './features/users/user-form/user-form.component';
 import { ConfirmationDialogComponent } from './shared/components/confirmation-dialog.component';
+import { ErrorDialogComponent } from './shared/components/error-dialog.component';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -21,14 +22,15 @@ import { UserEffects } from './store/user.effects';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErpHeaderInterceptor } from './core/interceptors/erp-header.interceptor';
 import { UsDateFormatService } from './core/providers/us-date-format.service';
-import { DateFormatService } from './core/providers/date-format.service';
+import { GlobalErrorHandler } from './core/providers/globalError.handler';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
     UserFormComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    ErrorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -43,8 +45,9 @@ import { DateFormatService } from './core/providers/date-format.service';
     EffectsModule.forRoot([UserEffects]),
   ],
   providers: [
+    { provide: ErrorHandler, useClass: GlobalErrorHandler },
     { provide: HTTP_INTERCEPTORS, useClass: ErpHeaderInterceptor, multi: true },
-    { provide: DateFormatService, useClass: UsDateFormatService }
+    UsDateFormatService
   ],
   bootstrap: [AppComponent]
 })
